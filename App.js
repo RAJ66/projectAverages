@@ -5,13 +5,13 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      matchHours: '',
-      matchMinute: '',
-      arrivalHours: '',
-      arrivalMinute: '',
-      arrivalSeconds: '',
+      matchHours: '0',
+      matchMinute: '0',
+      arrivalHours: '0',
+      arrivalMinute: '0',
+      arrivalSeconds: '0',
 
-      distance: '',
+      distance: '0',
     };
   }
 
@@ -82,11 +82,11 @@ export default class App extends React.Component {
           {' '}
           {this.state.matchHours}:{this.state.matchMinute}
         </Text>
-
+        {/* A JSX comment 
         <Text>
           {parseInt(this.state.matchHours * 60 * 60) +
             parseInt(this.state.matchMinute * 60)}{' '}
-        </Text>
+        </Text>*/}
 
         <Text> Chegada</Text>
         <Text> Horas</Text>
@@ -116,6 +116,7 @@ export default class App extends React.Component {
           {this.state.arrivalSeconds}
         </Text>
 
+        {/* A JSX comment 
         <Text>
           {parseInt(this.state.arrivalHours * 60) * 60 +
             parseInt(this.state.arrivalMinute * 60) +
@@ -128,7 +129,7 @@ export default class App extends React.Component {
             parseInt(this.state.arrivalSeconds) -
             parseInt(this.state.matchHours * 60 * 60) -
             parseInt(this.state.matchMinute * 60)}
-        </Text>
+        </Text>*/}
 
         <Text> Distancia</Text>
         <TextInput
@@ -137,7 +138,7 @@ export default class App extends React.Component {
           value={this.state.distance}
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
         />
-        <Text> {this.state.distance}</Text>
+        <Text> Dsitancia:{this.state.distance}</Text>
 
         <Text> Media</Text>
         <Text>
