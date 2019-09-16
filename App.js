@@ -9,6 +9,8 @@ export default class App extends React.Component {
       matchMinute: '',
       arrivalHours: '',
       arrivalMinute: '',
+      arrivalSeconds: '',
+
       distance: '',
     };
   }
@@ -39,6 +41,13 @@ export default class App extends React.Component {
     if (/^\d+$/.test(text)) {
       this.setState({
         arrivalMinute: text,
+      });
+    }
+  };
+  InputSecondsChegada = text => {
+    if (/^\d+$/.test(text)) {
+      this.setState({
+        arrivalSeconds: text,
       });
     }
   };
@@ -75,8 +84,8 @@ export default class App extends React.Component {
         </Text>
 
         <Text>
-          {parseInt(this.state.matchHours * 60) +
-            parseInt(this.state.matchMinute)}{' '}
+          {parseInt(this.state.matchHours * 60 * 60) +
+            parseInt(this.state.matchMinute * 60)}{' '}
         </Text>
 
         <Text> Chegada</Text>
@@ -94,21 +103,31 @@ export default class App extends React.Component {
           value={this.state.arrivalMinute}
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
         />
+        <Text> Segundos</Text>
+        <TextInput
+          keyboardType="numeric"
+          onChangeText={this.InputSecondsChegada}
+          value={this.state.arrivalSeconds}
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        />
         <Text>
           {' '}
-          {this.state.arrivalHours}:{this.state.arrivalMinute}
+          {this.state.arrivalHours}:{this.state.arrivalMinute}:
+          {this.state.arrivalSeconds}
         </Text>
 
         <Text>
-          {parseInt(this.state.arrivalHours * 60) +
-            parseInt(this.state.arrivalMinute)}{' '}
+          {parseInt(this.state.arrivalHours * 60) * 60 +
+            parseInt(this.state.arrivalMinute * 60) +
+            parseInt(this.state.arrivalSeconds)}{' '}
         </Text>
         <Text>Final</Text>
         <Text>
-          {parseInt(this.state.arrivalHours * 60) +
-            parseInt(this.state.arrivalMinute) -
-            parseInt(this.state.matchHours * 60) -
-            parseInt(this.state.matchMinute)}
+          {parseInt(this.state.arrivalHours * 60 * 60) +
+            parseInt(this.state.arrivalMinute * 60) +
+            parseInt(this.state.arrivalSeconds) -
+            parseInt(this.state.matchHours * 60 * 60) -
+            parseInt(this.state.matchMinute * 60)}
         </Text>
 
         <Text> Distancia</Text>
@@ -122,11 +141,12 @@ export default class App extends React.Component {
 
         <Text> Media</Text>
         <Text>
-          {this.state.distance /
-            (parseInt(this.state.arrivalHours * 60) +
-              parseInt(this.state.arrivalMinute) -
-              parseInt(this.state.matchHours * 60) -
-              parseInt(this.state.matchMinute))}{' '}
+          {(60 * this.state.distance) /
+            (parseInt(this.state.arrivalHours * 60 * 60) +
+              parseInt(this.state.arrivalMinute * 60) +
+              parseInt(this.state.arrivalSeconds) -
+              parseInt(this.state.matchHours * 60 * 60) -
+              parseInt(this.state.matchMinute * 60))}{' '}
         </Text>
       </View>
     );
