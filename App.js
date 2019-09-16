@@ -141,7 +141,7 @@ export default class App extends React.Component {
         <Text> Dsitancia:{this.state.distance}</Text>
 
         <Text> Media</Text>
-        <Text>
+        <Text style={styles.result}>
           {(60 * this.state.distance) /
             (parseInt(this.state.arrivalHours * 60 * 60) +
               parseInt(this.state.arrivalMinute * 60) +
@@ -154,4 +154,9 @@ export default class App extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  result: {
+    fontWeight: 'bold',
+    fontSize: 30,
+  },
+});
