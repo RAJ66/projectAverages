@@ -9,6 +9,7 @@ export default class App extends React.Component {
       matchMinute: '',
       arrivalHours: '',
       arrivalMinute: '',
+      distance: '',
     };
   }
 
@@ -38,6 +39,14 @@ export default class App extends React.Component {
     if (/^\d+$/.test(text)) {
       this.setState({
         arrivalMinute: text,
+      });
+    }
+  };
+
+  InputDisatance = text => {
+    if (/^\d+$/.test(text)) {
+      this.setState({
+        distance: text,
       });
     }
   };
@@ -100,6 +109,24 @@ export default class App extends React.Component {
             parseInt(this.state.arrivalMinute) -
             parseInt(this.state.matchHours * 60) -
             parseInt(this.state.matchMinute)}
+        </Text>
+
+        <Text> Distancia</Text>
+        <TextInput
+          keyboardType="numeric"
+          onChangeText={this.InputDisatance}
+          value={this.state.distance}
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        />
+        <Text> {this.state.distance}</Text>
+
+        <Text> Media</Text>
+        <Text>
+          {this.state.distance /
+            (parseInt(this.state.arrivalHours * 60) +
+              parseInt(this.state.arrivalMinute) -
+              parseInt(this.state.matchHours * 60) -
+              parseInt(this.state.matchMinute))}{' '}
         </Text>
       </View>
     );
